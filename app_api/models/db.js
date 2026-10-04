@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dbURI = process.env.DB_HOST || 'mongodb+srv://kevinsimmons4_db_user:iNoBYBLXLdkJ4rdd@cluster0.ddpkn4z.mongodb.net/travlr?retryWrites=true&w=majority';
+const dbURI = process.env.DB_HOST;
 const readLine = require('readline');
 
 // Build the connection string and set the connection timeout.
@@ -11,7 +11,7 @@ const connect = () => {
 
 // Monitor connection events
 mongoose.connection.on('connected', () => {
-    console.log(`Mongoose connected to ${dbURI}`);
+    console.log('Mongoose connected to Atlas');
 });
 
 mongoose.connection.on('error', err => {
