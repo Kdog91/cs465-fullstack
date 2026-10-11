@@ -1,0 +1,59 @@
+<div class="mt-3">
+  <h2>Edit Trip</h2>
+  <div *ngIf="message" class="alert alert-danger">{{ message }}</div>
+
+  <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="code" class="form-label">Code</label>
+      <input id="code" type="text" class="form-control" formControlName="code" readonly>
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input id="name" type="text" class="form-control" formControlName="name" placeholder="Name">
+      <div *ngIf="submitted && f['name'].errors" class="text-danger">Name is required</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="length" class="form-label">Length</label>
+      <input id="length" type="text" class="form-control" formControlName="length" placeholder="Length">
+      <div *ngIf="submitted && f['length'].errors" class="text-danger">Length is required</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="start" class="form-label">Start</label>
+      <input id="start" type="date" class="form-control" formControlName="start">
+      <div *ngIf="submitted && f['start'].errors" class="text-danger">Start date is required</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="resort" class="form-label">Resort</label>
+      <input id="resort" type="text" class="form-control" formControlName="resort" placeholder="Resort">
+      <div *ngIf="submitted && f['resort'].errors" class="text-danger">Resort is required</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="perPerson" class="form-label">Per Person Price</label>
+      <input id="perPerson" type="text" class="form-control" formControlName="perPerson" placeholder="Price">
+      <div *ngIf="submitted && f['perPerson'].errors" class="text-danger">Price is required</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <select id="image" class="form-select" formControlName="image">
+        <option value="reef1.jpg">reef1.jpg</option>
+        <option value="reef2.jpg">reef2.jpg</option>
+        <option value="reef3.jpg">reef3.jpg</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" rows="5" class="form-control" formControlName="description" placeholder="Description"></textarea>
+      <div *ngIf="submitted && f['description'].errors" class="text-danger">Description is required</div>
+    </div>
+
+    <button type="submit" class="btn btn-info me-2">Update</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  </form>
+</div>
