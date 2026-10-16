@@ -68,9 +68,20 @@ A MEAN stack project for Travlr Getaways. It has a customer-facing website, a RE
 
 ## Branches
 
-Each course module is on its own branch (`module1` through `module6`).
+Each course module is on its own branch (`module1` through `module7`).
 
 ## Testing
 
 - The API was tested with Postman and the browser.
 - The Angular app was tested by adding, editing, and deleting trips through the admin interface.
+
+## Security (Module 7)
+
+- Users are stored in the `users` collection with a salted, hashed password (PBKDF2). Plain-text passwords are never stored.
+- `POST /api/register` and `POST /api/login` return a JSON Web Token (JWT) that expires after 1 hour.
+- Adding, updating, and deleting trips (`POST`, `PUT`, `DELETE` on `/api/trips`) require an `Authorization: Bearer <token>` header. Reading trips is public.
+- The Angular admin app has a login page, stores the token in browser local storage, attaches it to API calls with an HTTP interceptor, and hides the Add, Edit, and Delete buttons when logged out.
+- The JWT signing secret is stored in a `.env` file (`JWT_SECRET=...`) that is not committed to Git.
+
+
+To run the API you also need a `.env` file in the project root containing `JWT_SECRET=any-long-random-string`.
